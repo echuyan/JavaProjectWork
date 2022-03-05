@@ -13,10 +13,10 @@ public class Sum {
     private int thousands;
     private int hundreds;
     private String result;
-    private String[][] ed = {{"", ""}, {"один", "одна"}, {"два", "две"}, {"три", "три"}, {"четыре", "четыре"}, {"пять", "пять"}, {"шесть", "шесть"}, {"семь", "семь"}, {"восемь", "восемь"}, {"девять", "девять"}};
-    private String[] des = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
-    private String[] sotni = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
-    private String[] desed = {"десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
+    private static final String[][] ED = {{"", ""}, {"один", "одна"}, {"два", "две"}, {"три", "три"}, {"четыре", "четыре"}, {"пять", "пять"}, {"шесть", "шесть"}, {"семь", "семь"}, {"восемь", "восемь"}, {"девять", "девять"}};
+    private static final String[] DES = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
+    private static final String[] SOTNI = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
+    private static final String[] DESED = {"десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
 
 
     public Sum(String input) {
@@ -28,19 +28,23 @@ public class Sum {
         return sum.input;
     }
 
+
     //проверка выхода за граничные значения и соответствия типу long
-    public boolean checkSum(Sum sum) throws NumberFormatException {
+    public String checkAndTransformSum(Sum sum) throws NumberFormatException {
         try {
             number1 = Long.valueOf(input);
-
-            if (number1 < 0 || number1 > 3000000000000l) {
-                return false;
-            } else {
-                return true;
-            }
         } catch (NumberFormatException e) {
-            throw e;
+            System.err.println(e.getMessage());
+            System.err.println("Некорректно введено число - введено не число");
+            return "Некорректно введено число - введено не число";
         }
+
+        if (number1 < 0 || number1 > 3000000000000l) {
+            return "Некорректно введено число - выход за пределы граничных значений";
+        } else {
+            return formatNumber(sum);
+        }
+
     }
 
 
@@ -86,13 +90,13 @@ public class Sum {
 
 
             if (secondDigit == 1) {
-                text = sotni[firstDigit] + " " + desed[thirdDigit] + " ";
+                text = SOTNI[firstDigit] + " " + DESED[thirdDigit] + " ";
             } else {
-                text = sotni[firstDigit] + " " + des[secondDigit] + " ";
+                text = SOTNI[firstDigit] + " " + DES[secondDigit] + " ";
                 if ((thirdDigit == 1 || thirdDigit == 2) && (groupNumber != 4)) {
-                    text = text + ed[thirdDigit][0] + " ";
+                    text = text + ED[thirdDigit][0] + " ";
                 } else {
-                    text = text + ed[thirdDigit][1] + " ";
+                    text = text + ED[thirdDigit][1] + " ";
                 }
 
 

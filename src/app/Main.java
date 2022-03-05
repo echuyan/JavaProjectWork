@@ -18,18 +18,8 @@ public class Main {
 
         Sum sum = new Sum(number);
 
-        try {
-            if (sum.checkSum(sum)) {
-                System.out.println(sum.formatNumber(sum));
-            } else {
-                System.err.println("Некорректно введено число - выход за пределы граничных значений");
-            }
+        System.out.println(sum.checkAndTransformSum(sum));
 
-        } catch (NumberFormatException e) {
-            System.err.println(e.getMessage());
-            System.err.println("Некорректно введено число - введено не число");
-        } finally {
-            System.out.println("Вы ввели число: " + sum.getInput(sum));
-        }
     }
 }
+

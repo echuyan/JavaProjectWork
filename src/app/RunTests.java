@@ -1,22 +1,23 @@
 package app;
 
-import tests.Test01Boundaries;
-import tests.Test02Zero;
-import tests.Test03DeclinationsTest;
+import tests.Tests;
 
 public class RunTests {
 
     public static void main(String[] args) {
         System.out.println("\n\n-----------Running tests-----------\n\n");
 
-        new Test01Boundaries().testBoundaries();
+        new Tests().testBoundaries();
         System.out.println("\n\n----------------------\n\n");
 
 
-        new Test02Zero().testZero();
+        new Tests().testZero();
         System.out.println("\n\n----------------------\n\n");
 
-        new Test03DeclinationsTest().testDeclinations();
+        new Tests().testDeclinations();
+        System.out.println("\n\n----------------------\n\n");
+
+        new Tests().testNotANumber();
         System.out.println("\n\n----------------------\n\n");
 
     }
